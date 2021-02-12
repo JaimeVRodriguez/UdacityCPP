@@ -19,7 +19,11 @@ int main() {
     cout << b[0][1];
     cout << "\n";
 
-    // Print size of array
+    // Print size of vecotr
     cout << a.size() << "\n";
+
+    // 2D vector length
+    cout << b[1].size() << '\n';
+
 
 }
