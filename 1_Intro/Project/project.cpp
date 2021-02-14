@@ -9,27 +9,42 @@ using std::vector;
 using std::ifstream;
 using std::istringstream;
 
+enum class State {kEmpty, kObstacle};
 
-vector<int> ParseLine(string line) {
+string CellString(State cell) {
+  switch (cell) {
+    case State::kObstacle :
+      return "⛰️ ";
+    default:
+      return "0 ";
+  }
+}
+
+vector<State> ParseLine(string line) {
   istringstream sline(line);
     int n;
     char c;
-    vector<int> row;
+    vector<State> row;
     while (sline >> n >> c && c == ',') {
-      row.push_back(n);
+      if (n == 0) {
+        row.push_back(State::kEmpty);
+      }
+      else {
+        row.push_back(State::kObstacle);
+      }
     }
     return row;
 }
 
 
-vector<vector<int>> ReadBoard(string path) {
-  vector<vector<int>> board{};
+vector<vector<State>> ReadBoard(string path) {
+  vector<vector<State>> board{};
   ifstream file (path);
 
   if (file) {
     string line;
     while (getline(file, line)) {
-      auto row = ParseLine(line);
+      vector<State> row = ParseLine(line);
       board.push_back(row);
     }
   }
@@ -37,10 +52,10 @@ vector<vector<int>> ReadBoard(string path) {
 }
 
 
-void PrintBoard(vector<vector<int>> board) {
+void PrintBoard(vector<vector<State>> board) {
   for (auto line : board) {
     for (auto item : line) {
-      cout << item << " ";
+      cout << CellString(item) << " ";
     }
     cout << "\n";
   }
