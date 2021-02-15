@@ -3,11 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-using std::cout;
-using std::string;
-using std::vector;
-using std::ifstream;
-using std::istringstream;
+using namespace std;
 
 enum class State {kEmpty, kObstacle};
 
