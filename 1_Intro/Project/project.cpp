@@ -53,9 +53,9 @@ vector<vector<State>> ReadBoard(string path) {
 
 
 void PrintBoard(vector<vector<State>> board) {
-  for (auto line : board) {
-    for (auto item : line) {
-      cout << CellString(item) << " ";
+  for (int i = 0; i < board.size(); i++) {
+    for (int j = 0; j < board[i].size(); j++) {
+      cout << CellString(board[i][j]);
     }
     cout << "\n";
   }
